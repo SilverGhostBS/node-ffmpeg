@@ -21,7 +21,11 @@ async function main() {
         } else {
             video.setVideoCodec('h264')
             video.setVideoBitRate(Math.min(2400, video.metadata.video.bitrate))
-            video.setVideoFrameRate(video.metadata.video.fps + "/2")
+            if (video.metadata.video.fps > 0) {
+                video.setVideoFrameRate(video.metadata.video.fps + "/2")
+            } else {
+                video.setVideoFrameRate("1000/60")
+            }
             /*            if (video.metadata.video.rotate == 90)
                             video.setVideoTranspose(-90)
             
